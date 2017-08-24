@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="fbImg" property="og:image" content="http://placehold.it/600/77e91f"/>
+  <title>TEST JS</title>
+  <script type="text/javascript">
+let arrayOfPhotos = [] // an empty array to hold photos form server
+const url = 'https://jsonplaceholder.typicode.com/photos'
+document.onload = fetch(url, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json"
+  }
+}).then(response => {
+  response.json().then(res => {
+    res.forEach((key) => arrayOfPhotos.push(key.url))
+    document.querySelector('meta[name="fbImg"]').setAttribute("content", arrayOfPhotos[Math.floor(Math.random() * arrayOfPhotos.length)]);
+  })
+}, error => {
+  console.log(error.message)
+})
+</script>
+</head>
+<body>
+<span>test</span>
+</body>
+</html>
